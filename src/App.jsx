@@ -11,6 +11,7 @@ export default function App() {
             <AppHeader />
         <section className="app">
                     <Route element={<AboutPage />} path='/about' />
+            <AppFooter />
 
         </section>
 
