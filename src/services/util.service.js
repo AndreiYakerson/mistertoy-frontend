@@ -31,7 +31,7 @@ function makeLorem(size = 100) {
 }
 
 function getRandomLabels(size = 3) {
-    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor']
 
     let newLabels = []
     while (size > 0) {
