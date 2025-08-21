@@ -10,6 +10,7 @@ export default function App() {
         <Router>
             <AppHeader />
         <section className="app">
+                    <Route element={<HomePage />} path='/' />
                     <Route element={<AboutPage />} path='/about' />
             <AppFooter />
 
