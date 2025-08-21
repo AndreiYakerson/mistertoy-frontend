@@ -12,6 +12,7 @@ export default function App() {
         <section className="app">
                     <Route element={<HomePage />} path='/' />
                     <Route element={<AboutPage />} path='/about' />
+                    <Route element={<ToyIndex />} path='/toy' />
             <AppFooter />
 
         </section>
