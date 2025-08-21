@@ -35,5 +35,7 @@
 
 .toy-list img {
     width: 50%;
+    height: 140px;
+    object-fit: contain;
 }
 
