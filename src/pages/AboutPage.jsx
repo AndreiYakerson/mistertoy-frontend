@@ -1,6 +1,10 @@
+import { utilService } from "../services/util.service.js";
 
 export function AboutPage() {
     return (
-        <h1>About</h1>
+        <section className="about">
+            <h1>About:</h1>
+            <p>{utilService.makeLorem()}</p>
+        </section>
     )
 }
