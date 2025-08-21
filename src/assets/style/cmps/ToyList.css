@@ -1,0 +1,39 @@
+
+.toy-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+    list-style: none;
+}
+
+.toy-list li {
+    display: grid;
+    min-height: 300px;
+    max-width: 500px;
+    background-color: var(--clr1);
+    padding: .6em;
+
+    border-radius: .5em;
+    box-shadow: 0px 0px 3px 0px rgba(3, 1, 0, 0.503);;
+}
+
+.toy-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.toy-actions-container {
+    place-self: end;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.toy-list img {
+    width: 50%;
+}
+
