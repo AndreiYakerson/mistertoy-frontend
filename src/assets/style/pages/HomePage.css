@@ -1,6 +1,23 @@
+.home-page h1 {
+    font-size: xx-large;
+    rotate: -8deg;
+    margin-block-end: 50px;
+    animation: glow 1s infinite alternate;
+}
 
 .main-img {
     display: flex;
     width: 50%;
     margin-inline: auto
+}
+
+@keyframes glow {
+    0% {
+        color: var(--clr1bg);
+    }
+
+    100% {
+        color: red;
+        scale: 1.05;
+    }
 }
