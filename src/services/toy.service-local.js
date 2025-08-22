@@ -61,6 +61,7 @@ function getEmptyToy() {
 function getRandomToy() {
     return {
         name: utilService.getRandomLabels(2),
+        description: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
         imgUrl: `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
         price: utilService.getRandomIntInclusive(10, 100),
         labels: utilService.getRandomLabels(3),
