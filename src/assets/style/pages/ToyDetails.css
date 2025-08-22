@@ -1,0 +1,41 @@
+.toy-details {
+    display: grid;
+    gap: 40px;
+    margin-block-start: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.toy-details img {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.toy-info {
+    place-self: start;
+    grid-column: 1;
+    grid-row: 1;
+
+    background-color: var(--clr1);
+    padding: 1em;
+    border-radius: .5em;
+    box-shadow: var(--box-shadow)
+}
+
+.details-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toy-info h1 {
+    font-size: 3em;
+    color: var(--clr1bg);
+}
+
+.toy-details img {
+    box-shadow: var(--box-shadow);
+    background-color: var(--clr1);
+    padding: 1em;
+    border-radius: .5em;
+    transition: .5s ease-in-out;
+}
+

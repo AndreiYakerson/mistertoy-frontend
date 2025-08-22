@@ -23,6 +23,7 @@
 
 /* Pages */
 @import 'pages/HomePage.css';
+@import 'pages/ToyDetails.css';
 
 
 .app {
