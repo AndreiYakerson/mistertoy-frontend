@@ -3,11 +3,12 @@
     rotate: -8deg;
     margin-block-end: 50px;
     animation: glow 1s infinite alternate;
+    max-width: 250px;
 }
 
 .main-img {
     display: flex;
-    width: 50%;
+    width: 350px;
     margin-inline: auto
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ToyList } from "../cmps/ToyList.jsx";
 import { toyService } from "../services/toy.service-local.js";
+import { Loading } from "../cmps/Loading.jsx";
 
 export function ToyIndex() {
 
@@ -42,9 +43,10 @@ export function ToyIndex() {
             });
     }
 
-
+    if (!toys.length) return <Loading />
 
     return (
+
         <div className="toy-index">
             <header>
             </header>
@@ -59,6 +61,7 @@ export function ToyIndex() {
             </section>
 
         </div>
+
     )
 
 }

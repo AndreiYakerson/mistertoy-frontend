@@ -25,7 +25,7 @@ export function ToyDetails() {
             })
     }
 
-    if (!toy) return <div className="loading">Loading...</div>
+    if (!toy) return <div className="loading"></div>
 
 
     return (
