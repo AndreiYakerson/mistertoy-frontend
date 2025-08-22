@@ -12,9 +12,10 @@
     max-width: 500px;
     background-color: var(--clr1);
     padding: .6em;
-
+    
     border-radius: .5em;
-    box-shadow: 0px 0px 3px 0px rgba(3, 1, 0, 0.503);;
+    box-shadow: var(--box-shadow);
+    transition: .5s;
 }
 
 .toy-preview {
@@ -43,6 +44,11 @@
 .toy-list li:hover img {
     scale: 1.1;
     rotate: 10deg;
+}
+
+.toy-list li:hover {
+    box-shadow: 0px 0px 10px 0px rgba(3, 1, 0, 0.503);
+    background-color: var(--clr1bg-light);
 }
 
 .toy-list h2 {
