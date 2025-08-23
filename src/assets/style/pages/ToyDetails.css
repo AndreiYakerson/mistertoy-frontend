@@ -32,8 +32,6 @@
 }
 
 .toy-details img {
-    box-shadow: var(--box-shadow);
-    background-color: var(--clr1);
     padding: 1em;
     border-radius: .5em;
     transition: .5s ease-in-out;

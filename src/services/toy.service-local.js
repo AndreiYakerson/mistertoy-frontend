@@ -18,16 +18,24 @@ export const toyService = {
 
 
 function query(filterBy = {}) {
+
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
-            if (!filterBy.minSpeed) filterBy.minSpeed = -Infinity
+            if (!filterBy.sortBy) filterBy.sortBy = ''
+
             const regExp = new RegExp(filterBy.txt, 'i')
-            return toys.filter(toy =>
-                regExp.test(toy.name) &&
-                toy.price <= filterBy.maxPrice
-            )
+
+            toys = toys.filter(toy => regExp.test(toy.name))
+
+            if (filterBy.maxPrice) toys = toys.filter(toy => toy.price <= filterBy.maxPrice)
+            if (filterBy.sortBy === 'All') return toys
+            return toys = toys.filter(toy => {
+                if (filterBy.sortBy === 'In stock') return toy.inStock
+                if (filterBy.sortBy === 'Out of stock') return !toy.inStock
+                return true
+            })
+
         })
 }
 
@@ -60,7 +68,7 @@ function getEmptyToy() {
 
 function getRandomToy() {
     return {
-        name: utilService.getRandomLabels(2),
+        name: utilService.getRandomLabels(1),
         description: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
         imgUrl: `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
         price: utilService.getRandomIntInclusive(10, 100),
@@ -72,12 +80,8 @@ function getRandomToy() {
 }
 
 
-
-
-
-
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '', minSpeed: '' }
+    return { txt: '', maxPrice: '', sortBy: '' }
 }
 
 // TEST DATA

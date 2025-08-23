@@ -2,19 +2,27 @@ import { useEffect, useState } from "react";
 import { ToyList } from "../cmps/ToyList.jsx";
 import { toyService } from "../services/toy.service-local.js";
 import { Loading } from "../cmps/Loading.jsx";
+import { ToyFilter } from "../cmps/ToyFilter.jsx";
+import { useSearchParams } from "react-router-dom";
 
 export function ToyIndex() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [toys, setToys] = useState(null);
+    const [filterBy, setFilterBy] = useState(searchParams ? Object.fromEntries(searchParams) : toyService.getDefaultFilter());
+    console.log(filterBy);
+    
 
-    const [toys, setToys] = useState([]);
 
     useEffect(() => {
-        loadToys();
-    }, []);
+        setSearchParams(filterBy);
+        loadToys(filterBy);
+    }, [filterBy]);
 
-    function loadToys() {
-        return toyService.query()
+
+    function loadToys(filterBy) {
+        return toyService.query(filterBy)
             .then(toys => {
-                console.log('Toys loaded:', toys);
+                // console.log('Toys loaded:', toys);
                 setToys(toys);
             })
             .catch(err => {
@@ -43,22 +51,32 @@ export function ToyIndex() {
             });
     }
 
-    if (!toys.length) return <Loading />
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
+    if (!toys) return <Loading />
+
 
     return (
 
         <div className="toy-index">
             <header>
-            </header>
-            <main>
                 <button onClick={onAddToy}>Add toy</button>
-            </main>
+                <hr />
+                <ToyFilter
+                    filterBy={filterBy}
+                    onSetFilter={onSetFilter}
+                />
+            </header>
 
             <section>
                 <hr />
                 <h1>Toy list:</h1>
+                {toys.length === 0 && <h2>No toys available.</h2>}
                 <ToyList onRemoveToy={onRemoveToy} toys={toys} />
             </section>
+
 
         </div>
 
