@@ -23,6 +23,7 @@ function query(filterBy = {}) {
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
             if (!filterBy.sortBy) filterBy.sortBy = ''
+            if (!filterBy.maxPrice === '0') filterBy.maxPrice = ''
 
             const regExp = new RegExp(filterBy.txt, 'i')
 

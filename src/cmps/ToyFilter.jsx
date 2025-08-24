@@ -3,10 +3,10 @@ import { utilService } from "../services/util.service";
 import { Loading } from "./Loading";
 
 export function ToyFilter({ filterBy, onSetFilter }) {
-    const [filterByToEdit, setFilterByToEdit] = useState({...filterBy});
+    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy });
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300));
 
-    
+
     useEffect(() => {
         onSetFilter.current(filterByToEdit);
     }, [filterByToEdit])
@@ -14,9 +14,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     function handleChange({ target }) {
         let { value, type, name: field } = target
         value = type === 'number' ? +value : value
+        if (value === 0) value = ''
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
-    
+
     function handleSortBy({ target }) {
         const { value } = target
         setFilterByToEdit(prevFilter => ({ ...prevFilter, sortBy: value }))
