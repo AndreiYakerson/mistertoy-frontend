@@ -5,6 +5,7 @@
     background-color: var(--clr1);
     color: var(--clr1bg);
     padding-block: 1em;
+    box-shadow: var(--box-shadow);
 }
 
 .app-nav {

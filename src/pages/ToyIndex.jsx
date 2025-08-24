@@ -9,7 +9,7 @@ export function ToyIndex() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [toys, setToys] = useState(null);
     const [filterBy, setFilterBy] = useState(searchParams ? Object.fromEntries(searchParams) : toyService.getDefaultFilter());
-    console.log(filterBy);
+    // console.log(filterBy);
     
 
 
@@ -63,7 +63,6 @@ export function ToyIndex() {
         <div className="toy-index">
             <header>
                 <button onClick={onAddToy}>Add toy</button>
-                <hr />
                 <ToyFilter
                     filterBy={filterBy}
                     onSetFilter={onSetFilter}
@@ -71,7 +70,6 @@ export function ToyIndex() {
             </header>
 
             <section>
-                <hr />
                 <h1>Toy list:</h1>
                 {toys.length === 0 && <h2>No toys available.</h2>}
                 <ToyList onRemoveToy={onRemoveToy} toys={toys} />
