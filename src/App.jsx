@@ -1,5 +1,5 @@
 
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './assets/style/main.css'
 
 // import { Provider } from 'react-redux'
@@ -13,28 +13,33 @@ import { AboutPage } from './pages/AboutPage.jsx'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { ToyDetails } from './cmps/ToyDetails.jsx'
+import { Provider } from 'react-redux'
+import { store } from './store/store.js'
 
 
 export default function App() {
 
     return (
-        <Router>
-        <section className="app">
-            <AppHeader />
-            <main className="main-layout">
-                <Routes>
-                    <Route element={<HomePage />} path='/' />
-                    <Route element={<AboutPage />} path='/about' />
-                    <Route element={<ToyIndex />} path='/toy' />
-                    <Route element={<ToyDetails />} path='/toy/:toyId' />
+        <Provider store={store}>
 
-                </Routes>
-            </main>
-            <AppFooter />
+            <Router>
+                <section className="app">
+                    <AppHeader />
+                    <main className="main-layout">
+                        <Routes>
+                            <Route element={<HomePage />} path='/' />
+                            <Route element={<AboutPage />} path='/about' />
+                            <Route element={<ToyIndex />} path='/toy' />
+                            <Route element={<ToyDetails />} path='/toy/:toyId' />
 
-        </section>
+                        </Routes>
+                    </main>
+                    <AppFooter />
 
-        </Router>
+                </section>
+
+            </Router>
+        </Provider>
 
     )
 }

@@ -4,31 +4,23 @@ import { toyService } from "../services/toy.service-local.js";
 import { Loading } from "../cmps/Loading.jsx";
 import { ToyFilter } from "../cmps/ToyFilter.jsx";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { loadToys } from "../store/actions/toy.actions.js";
 
 export function ToyIndex() {
+    // const [toys, setToys] = useState(null);
+    const toys = useSelector(state => state.toyModule.toys);
+
     const [searchParams, setSearchParams] = useSearchParams();
-    const [toys, setToys] = useState(null);
     const [filterBy, setFilterBy] = useState(searchParams ? Object.fromEntries(searchParams) : toyService.getDefaultFilter());
     // console.log(filterBy);
-    
-
 
     useEffect(() => {
         setSearchParams(filterBy);
-        loadToys(filterBy);
+        // loadToys(filterBy);
+        loadToys(filterBy)
     }, [filterBy]);
 
-
-    function loadToys(filterBy) {
-        return toyService.query(filterBy)
-            .then(toys => {
-                // console.log('Toys loaded:', toys);
-                setToys(toys);
-            })
-            .catch(err => {
-                console.error('Error loading toys:', err);
-            });
-    }
 
     function onAddToy() {
         const toy = toyService.getRandomToy();
