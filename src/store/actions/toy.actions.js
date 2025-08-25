@@ -22,6 +22,7 @@ export function loadToys(filterBy) {
             console.error('Error loading toys:', err);
         });
 }
+//TODO Add toy action!!!
 
 export function removeToy(toyId) {
     return toyService.remove(toyId)

@@ -5,7 +5,7 @@ import { Loading } from "../cmps/Loading.jsx";
 import { ToyFilter } from "../cmps/ToyFilter.jsx";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { loadToys } from "../store/actions/toy.actions.js";
+import { loadToys, removeToy } from "../store/actions/toy.actions.js";
 
 export function ToyIndex() {
     // const [toys, setToys] = useState(null);
@@ -36,11 +36,7 @@ export function ToyIndex() {
     }
 
     function onRemoveToy(toyId) {
-        return toyService.remove(toyId)
-            .then(() => setToys(prevToys => prevToys.filter(toy => toy._id !== toyId)))
-            .catch(err => {
-                console.error('Can not removing toy:', err);
-            });
+        removeToy(toyId)
     }
 
     function onSetFilter(filterBy) {
