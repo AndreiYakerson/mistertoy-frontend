@@ -41,8 +41,12 @@ export function ToyDetails() {
                 {toy.inStock ? <p className="in-stock" style={{ color: 'blue' }}>In Stock</p> : <p className="out-of-stock" style={{ color: 'red' }}>Out of Stock</p>}
 
                 <div className="details-btns">
-                <button><Link to={'/toy'}>Back</Link></button>
-                <button className="btn">Buy</button>
+                    <button>
+                        <Link to={'/toy'}>Back</Link>
+                    </button>
+                    <button>
+                        <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
+                    </button>
                 </div>
             </div>
 

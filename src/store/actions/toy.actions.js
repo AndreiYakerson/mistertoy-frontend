@@ -14,7 +14,6 @@ export function loadToys(filterBy) {
 
     return toyService.query(filterBy)
         .then(toys => {
-            console.log(toys);
             store.dispatch({ type: SET_TOYS, toys })
 
         })
@@ -36,19 +35,21 @@ export function removeToy(toyId) {
 
 }
 
-export function removeToyOptimistic(toyId) {
-    store.dispatch({ type: REMOVE_TOY, toyId })
-    return toyService.remove(toyId).catch(err => {
-        store.dispatch({ type: TOY_UNDO })
-        console.log('toy action -> Cannot remove toy', err)
-        throw err
-    })
-}
+// export function removeToyOptimistic(toyId) {
+//     store.dispatch({ type: REMOVE_TOY, toyId })
+//     return toyService.remove(toyId).catch(err => {
+//         store.dispatch({ type: TOY_UNDO })
+//         console.log('toy action -> Cannot remove toy', err)
+//         throw err
+//     })
+// }
 
 export function saveToy(toy) {
+    
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     return toyService.save(toy)
         .then(toyToSave => {
+            console.log(type);
             store.dispatch({ type, toy: toyToSave })
             return toyToSave
         })

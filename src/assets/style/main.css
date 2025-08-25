@@ -25,6 +25,7 @@
 /* Pages */
 @import 'pages/HomePage.css';
 @import 'pages/ToyDetails.css';
+@import 'pages/EditPage.css';
 
 
 .app {

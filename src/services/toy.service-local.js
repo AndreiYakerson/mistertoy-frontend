@@ -11,7 +11,6 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getRandomToy,
     getDefaultFilter
 }
 
@@ -56,6 +55,10 @@ function save(toy) {
     } else {
         // when switching to backend - remove the next line
         // toy.owner = userService.getLoggedinUser()
+        toy.createdAt = Date.now()
+        toy.imgUrl = `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
+        toy.description = utilService.makeLorem(utilService.getRandomIntInclusive(10, 30))
+        toy.labels = utilService.getRandomLabels(3)
         return storageService.post(STORAGE_KEY, toy)
     }
 }
@@ -64,6 +67,7 @@ function getEmptyToy() {
     return {
         name: '',
         price: '',
+        inStock: false,
     }
 }
 
@@ -75,7 +79,6 @@ function getRandomToy() {
         price: utilService.getRandomIntInclusive(10, 100),
         labels: utilService.getRandomLabels(3),
         createdAt: Date.now(),
-        inStock: Math.random() > .5 ? true : false,
     }
 
 }

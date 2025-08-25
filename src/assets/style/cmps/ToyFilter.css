@@ -3,6 +3,7 @@
     background-color: var(--clr1);
     padding: 10px;
     box-shadow: var(--box-shadow);
+    margin-top: 10px;
 }
 
 .filter-form {

@@ -35,7 +35,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     name="txt"
                     placeholder="By text"
                     onChange={handleChange}
-                    value={filterByToEdit.txt} />
+                    value={filterByToEdit.txt || ''} />
 
                 <label htmlFor="maxPrice">Max price:</label>
                 <input type="number"
@@ -43,7 +43,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     name="maxPrice"
                     placeholder="By max price"
                     onChange={handleChange}
-                    value={filterByToEdit.maxPrice} />
+                    value={filterByToEdit.maxPrice || ''} />
 
                 <label htmlFor="toy">Toy:</label>
 

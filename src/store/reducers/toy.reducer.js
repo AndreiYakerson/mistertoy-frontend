@@ -8,7 +8,7 @@ export const UPDATE_TOY = 'UPDATE_TOY'
 
 
 const initialState = {
-    toys: null,
+    toys: [],
 }
 
 export function toyReducer(state = initialState, action = {}) {
@@ -18,18 +18,20 @@ export function toyReducer(state = initialState, action = {}) {
             return { ...state, toys: action.toys }
 
         case REMOVE_TOY:
+
             toys = state.toys.filter(toy => toy._id !== action.toyId)
             return { ...state, toys, lastToys: state.toys }
 
         case ADD_TOY:
             toys = [action.toy, ...state.toys]
-            return { ...state, toys, lastToys: state.toys }
+            return { ...state, toys }
 
         case UPDATE_TOY:
+            
             toys = state.toys.map(toy =>
                 toy._id === action.toy._id ? action.toy : toy
             )
-            return { ...state, toys, lastToys: state.toys }
+            return { ...state, toys }
 
         default:
             return state

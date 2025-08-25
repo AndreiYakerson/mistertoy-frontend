@@ -15,6 +15,7 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { ToyDetails } from './cmps/ToyDetails.jsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
+import { ToyEdit } from './pages/ToyEdit.jsx'
 
 
 export default function App() {
@@ -30,6 +31,8 @@ export default function App() {
                             <Route element={<HomePage />} path='/' />
                             <Route element={<AboutPage />} path='/about' />
                             <Route element={<ToyIndex />} path='/toy' />
+                            <Route element={<ToyEdit />} path='/toy/edit' />
+                            <Route element={<ToyEdit />} path='/toy/edit/:toyId' />
                             <Route element={<ToyDetails />} path='/toy/:toyId' />
 
                         </Routes>
