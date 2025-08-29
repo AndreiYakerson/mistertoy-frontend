@@ -71,17 +71,18 @@ function getEmptyToy() {
     }
 }
 
-function getRandomToy() {
-    return {
-        name: utilService.getRandomLabels(1),
-        description: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
-        imgUrl: `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
-        price: utilService.getRandomIntInclusive(10, 100),
-        labels: utilService.getRandomLabels(3),
-        createdAt: Date.now(),
-    }
 
-}
+// function getRandomToy() {
+//     return {
+//         name: utilService.getRandomLabels(1),
+//         description: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+//         imgUrl: `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
+//         price: utilService.getRandomIntInclusive(10, 100),
+//         labels: utilService.getRandomLabels(3),
+//         createdAt: Date.now(),
+//     }
+
+// }
 
 
 function getDefaultFilter() {
