@@ -44,30 +44,31 @@ export function ToyEdit() {
     function onSaveToy(ev) {
         ev.preventDefault()
         saveToy(toyToEdit)
-        .then(() => navigate('/toy'))
+            .then(() => navigate('/toy'))
     }
+    console.log(toyToEdit);
 
     return (
 
         <section className="toy-edit toy-filter">
-        <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
+            <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
 
             <div className="form-container">
 
-            <form className="edit-form" action="submit" onSubmit={onSaveToy}>
-                <label htmlFor="name">Name:</label>
-                <input onChange={handleChange} type="text" id="name" name="name" value={toyToEdit.name || ''} />
+                <form className="edit-form" action="submit" onSubmit={onSaveToy}>
+                    <label htmlFor="name">Name:</label>
+                    <input onChange={handleChange} type="text" id="name" name="name" value={toyToEdit.name} />
 
-                <label htmlFor="price">Price:</label>
-                <input onChange={handleChange} type="number" id="price" name="price" value={toyToEdit.price || ''} />
+                    <label htmlFor="price">Price:</label>
+                    <input onChange={handleChange} type="number" id="price" name="price" value={toyToEdit.price} />
 
-                <label htmlFor="inStock">In Stock:</label>
-                <input onChange={handleChange} type="checkbox" id="inStock" name="inStock" checked={toyToEdit.inStock} />
+                    <label htmlFor="inStock">In Stock:</label>
+                    <input onChange={handleChange} type="checkbox" id="inStock" name="inStock" checked={toyToEdit.inStock} />
 
-                <button type="submit" onClick={onSaveToy}>
-                    {toyToEdit._id ? 'Save Changes' : 'Add Toy'}
-                </button>
-            </form>
+                    <button type="submit" onClick={onSaveToy}>
+                        {toyToEdit._id ? 'Save Changes' : 'Add Toy'}
+                    </button>
+                </form>
             </div>
             <button><Link to={'/toy'}>Back</Link></button>
         </section>
