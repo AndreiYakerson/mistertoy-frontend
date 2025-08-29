@@ -3,11 +3,14 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { toyService } from "../services/toy.service-local.js";
 import { ToyPreview } from "./ToyPreview.jsx";
+import { PopUp } from "./PopUp.jsx";
+import { Chat } from "./Chat.jsx";
 
 
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const [isOpen, setIsOpen] = useState(false)
     const { toyId } = useParams()
     const navigate = useNavigate()
 
@@ -48,6 +51,15 @@ export function ToyDetails() {
                         <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
                     </button>
                 </div>
+                {!isOpen && <button className="btn pop-up-btn" onClick={() => setIsOpen(true)}>Chat</button>}
+                <PopUp
+                    header={'Chat'}
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                >
+                    <Chat />
+
+                </PopUp>
             </div>
 
             <img src={`../${toy.imgUrl}`} alt="" />
