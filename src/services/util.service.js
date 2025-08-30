@@ -7,6 +7,7 @@ export const utilService = {
     animateCSS,
     debounce,
     getRandomLabels,
+    getRandomRGBAColor,
 }
 
 function makeId(length = 6) {
@@ -84,3 +85,11 @@ function debounce(func, timeout = 300) {
         }, timeout)
     }
 }
+
+function getRandomRGBAColor(opacity = 0.2) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+  
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }

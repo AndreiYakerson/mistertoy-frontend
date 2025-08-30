@@ -11,7 +11,8 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getChartData,
 }
 
 
@@ -39,6 +40,72 @@ function query(filterBy = {}) {
         })
 }
 
+function getChartData() {
+    return storageService.query(STORAGE_KEY)
+        .then(toys => {
+            const labels = _getLabels(toys)
+            const data = _mapBylabelsInStock(toys, labels)
+            const backgroundColor = labels.reduce(acc => {
+                acc.push(utilService.getRandomRGBAColor(0.2))
+                return acc
+            }, [])
+
+            const borderColor = labels.reduce(acc => {
+                acc.push(utilService.getRandomRGBAColor(1))
+                return acc
+            }, [])
+
+
+            const chartData = {
+                labels,
+                datasets: [
+                    {
+                        label: 'Toys in stock',
+                        data,
+                        backgroundColor,
+                        borderColor,
+                        // borderColor: [
+                        //     'rgba(255, 99, 132, 1)',
+                        //     'rgba(54, 162, 235, 1)',
+                        //     'rgba(255, 206, 86, 1)',
+                        //     'rgba(75, 192, 192, 1)',
+                        //     'rgba(153, 102, 255, 1)',
+                        //     'rgba(255, 159, 64, 1)',
+                        // ],
+                        borderWidth: 2,
+                    },
+
+                ],
+            }
+            return chartData
+        })
+
+}
+
+
+function _getLabels(toys) {
+    const labels = toys.reduce((acc, toy) => {
+        toy.labels.forEach(label => {
+            if (!acc.includes(label)) acc.push(label);
+        });
+        return acc;
+    }, []);
+
+    return labels;
+}
+
+function _mapBylabelsInStock(toys, labels) {
+    const labelsCount = labels.map(label => {
+        return toys.reduce((acc, toy) => {
+            if (toy.labels.includes(label) && toy.inStock) acc++;
+            return acc;
+        }, 0);
+    });
+
+    return labelsCount;
+}
+
+
 function getById(toyId) {
     return storageService.get(STORAGE_KEY, toyId)
 }
@@ -57,7 +124,7 @@ function save(toy) {
         // toy.owner = userService.getLoggedinUser()
         toy.createdAt = Date.now()
         toy.imgUrl = `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
-        toy.description = utilService.makeLorem(utilService.getRandomIntInclusive(10, 30))
+            toy.description = utilService.makeLorem(utilService.getRandomIntInclusive(10, 30))
         toy.labels = utilService.getRandomLabels(3)
         return storageService.post(STORAGE_KEY, toy)
     }

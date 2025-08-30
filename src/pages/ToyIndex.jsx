@@ -8,12 +8,10 @@ import { useSelector } from "react-redux";
 import { loadToys, removeToy } from "../store/actions/toy.actions.js";
 
 export function ToyIndex() {
-    // const [toys, setToys] = useState(null);
     const toys = useSelector(state => state.toyModule.toys);
-
+    
     const [searchParams, setSearchParams] = useSearchParams();
     const [filterBy, setFilterBy] = useState(searchParams ? Object.fromEntries(searchParams) : toyService.getDefaultFilter());
-
 
     useEffect(() => {
         setSearchParams(filterBy);
@@ -21,19 +19,6 @@ export function ToyIndex() {
         loadToys(filterBy)
     }, [filterBy]);
 
-
-    function onAddToy() {
-        const toy = toyService.getRandomToy();
-
-        toyService.save(toy)
-            .then(savedToy => {
-                setToys(prevToys => [...prevToys, savedToy]);
-                console.log('Saved toy:', savedToy);
-            })
-            .catch(err => {
-                console.error('Can not saving toy:', err);
-            });
-    }
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
