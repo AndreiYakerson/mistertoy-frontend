@@ -2,18 +2,26 @@ import { useEffect, useState, useRef } from "react";
 import { utilService } from "../services/util.service";
 import { Loading } from "./Loading";
 
-export function ToyFilter({ filterBy, onSetFilter }) {
+export function ToyFilter({ filterBy, onSetFilter, labels }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy });
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300));
 
 
     useEffect(() => {
         onSetFilter.current(filterByToEdit);
+
     }, [filterByToEdit])
 
     function handleChange({ target }) {
         let { value, type, name: field } = target
-        value = type === 'number' ? +value : value
+        if (type === 'select-multiple') {
+            value = [...target.selectedOptions].map(option => option.value)
+        } else {
+            value = type === 'number' ? +value : value
+        }
+
+        console.log(value);
+
         if (value === 0) value = ''
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
@@ -22,6 +30,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         const { value } = target
         setFilterByToEdit(prevFilter => ({ ...prevFilter, sortBy: value }))
     }
+
 
     return (
 
@@ -45,13 +54,30 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     onChange={handleChange}
                     value={filterByToEdit.maxPrice || ''} />
 
-                <label htmlFor="toy">Toy:</label>
-
+                <label htmlFor="sortBy">Toy:</label>
                 <select name="sortBy" id="sortBy" defaultValue={filterByToEdit.sortBy} onChange={handleSortBy}>
                     <option value="All">All</option>
                     <option value="In stock">In stock</option>
                     <option value="Out of stock">Out of stock</option>
                 </select>
+
+                {labels &&
+                    <>
+                        <label htmlFor="labels-select">Labels:</label>
+                        <select
+                            multiple
+                            className="labels-select"
+                            onChange={handleChange}
+                            id="labels-select"
+                            name="labels"
+                        >
+                            <option disabled>Labels</option>
+                            {labels.map(label => {
+                                return <option key={label} value={label}>{label}</option>
+                            })}
+                        </select>
+                    </>
+                }
             </form>
         </section>
 

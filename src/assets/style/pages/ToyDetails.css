@@ -37,3 +37,17 @@
     transition: .5s ease-in-out;
 }
 
+.label {
+    border-radius: 1rem;
+    background-color: var(--clr1bg);
+    color: white;
+    padding: .5rem 1rem;
+}
+
+.labels-container {
+    display: grid;
+    justify-content: start;
+    grid-auto-flow: column;
+    gap: 5px;
+    margin-block: 15px;
+}

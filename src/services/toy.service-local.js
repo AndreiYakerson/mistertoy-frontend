@@ -13,23 +13,37 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getChartData,
+    getLabels,
+    labelsQuery
+
 }
 
 
 
 function query(filterBy = {}) {
 
+    
+    console.log(filterBy.labels)
+
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
             if (!filterBy.sortBy) filterBy.sortBy = ''
             if (!filterBy.maxPrice === '0') filterBy.maxPrice = ''
+            if (!filterBy.labels?.length) filterBy.labels = []
 
             const regExp = new RegExp(filterBy.txt, 'i')
 
             toys = toys.filter(toy => regExp.test(toy.name))
 
             if (filterBy.maxPrice) toys = toys.filter(toy => toy.price <= filterBy.maxPrice)
+            if (filterBy.labels?.length) {
+
+                toys = toys.filter(toy => {
+                    return filterBy.labels.every(label => toy.labels.includes(label))
+                })
+            }
+
             if (filterBy.sortBy === 'All') return toys
             return toys = toys.filter(toy => {
                 if (filterBy.sortBy === 'In stock') return toy.inStock
@@ -43,7 +57,7 @@ function query(filterBy = {}) {
 function getChartData() {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
-            const labels = _getLabels(toys)
+            const labels = getLabels(toys)
             const data = _mapBylabelsInStock(toys, labels)
             const backgroundColor = labels.reduce(acc => {
                 acc.push(utilService.getRandomRGBAColor(0.2))
@@ -82,8 +96,12 @@ function getChartData() {
 
 }
 
+function labelsQuery() {
+   return storageService.query(STORAGE_KEY)
+    .then(toys => getLabels(toys))
+}
 
-function _getLabels(toys) {
+function getLabels(toys) {
     const labels = toys.reduce((acc, toy) => {
         toy.labels.forEach(label => {
             if (!acc.includes(label)) acc.push(label);
@@ -153,7 +171,7 @@ function getEmptyToy() {
 
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '', sortBy: '' }
+    return { txt: '', maxPrice: '', sortBy: '', labels: [] }
 }
 
 // TEST DATA

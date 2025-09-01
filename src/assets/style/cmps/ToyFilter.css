@@ -7,6 +7,14 @@
 }
 
 .filter-form {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: end;
     gap: 5px;
+}
+
+.labels-select {
+width: 200px;
+height: 6rem;
 }

@@ -2,7 +2,7 @@
 import { AdvancedMarker, APIProvider, Pin, Map } from '@vis.gl/react-google-maps';
 import { useState } from 'react';
 
-const API_KEY = 'AIzaSyCOj-eEavw7Lxs74EKGLRJDvuLZQZWdLng'
+const API_KEY = 'AIzaSyBnM5BaPSzdJ5EjQd7ahCl4reOsr4E4hnA'
 
 export function ToyMap() {
 

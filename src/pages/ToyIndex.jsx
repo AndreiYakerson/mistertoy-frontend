@@ -9,13 +9,18 @@ import { loadToys, removeToy } from "../store/actions/toy.actions.js";
 
 export function ToyIndex() {
     const toys = useSelector(state => state.toyModule.toys);
+    const [labels, setLabels] = useState([])
+
     
     const [searchParams, setSearchParams] = useSearchParams();
     const [filterBy, setFilterBy] = useState(searchParams ? Object.fromEntries(searchParams) : toyService.getDefaultFilter());
+    console.log(filterBy);
+
 
     useEffect(() => {
-        setSearchParams(filterBy);
-        // loadToys(filterBy);
+        toyService.labelsQuery()
+        .then(setLabels)
+        setSearchParams({...filterBy, labels: []});
         loadToys(filterBy)
     }, [filterBy]);
 
@@ -38,6 +43,7 @@ export function ToyIndex() {
                 <ToyFilter
                     filterBy={filterBy}
                     onSetFilter={onSetFilter}
+                    labels={labels}
                 />
             </header>
 

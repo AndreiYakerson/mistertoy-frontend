@@ -41,6 +41,10 @@ export function ToyDetails() {
                 <hr />
                 <h3>Description:</h3>
                 <p>{toy.description}</p>
+                <h3>Labels:</h3>
+                <div className="labels-container">{toy.labels.map(label => {
+                    return <span key={label} className="label" >{label} </span>
+                })}</div>
                 {toy.inStock ? <p className="in-stock" style={{ color: 'blue' }}>In Stock</p> : <p className="out-of-stock" style={{ color: 'red' }}>Out of Stock</p>}
 
                 <div className="details-btns">
