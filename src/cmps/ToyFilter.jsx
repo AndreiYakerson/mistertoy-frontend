@@ -71,7 +71,7 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                             id="labels-select"
                             name="labels"
                         >
-                            <option disabled>Labels</option>
+                            <option disabled style={{color: "yellow", backgroundColor: "purple"}}>Labels:</option>
                             {labels.map(label => {
                                 return <option key={label} value={label}>{label}</option>
                             })}

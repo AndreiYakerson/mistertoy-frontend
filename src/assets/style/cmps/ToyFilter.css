@@ -1,4 +1,3 @@
-
 .toy-filter {
     background-color: var(--clr1);
     padding: 10px;
@@ -15,6 +14,15 @@
 }
 
 .labels-select {
-width: 200px;
-height: 6rem;
+    width: max-content;
+    height: 6rem;
+    background-color: var(--clr2bg);
+    border: none;
+    padding-inline: 10px;
+}
+
+.labels-select option {
+    padding-block: 5px;
+    color: var(--clr1bg);
+    text-align: center;
 }
