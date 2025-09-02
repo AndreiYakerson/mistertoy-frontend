@@ -9,10 +9,11 @@
     justify-content: center;
     /* filter: blur(0.5px); */
     /* TODO Blur container instead the backdrop */
-
+    
     align-items: center;
     z-index: 1000;
 }
+
 
 .popup-container {
     background-color: yellow;

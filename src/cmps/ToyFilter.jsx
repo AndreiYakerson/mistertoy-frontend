@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { utilService } from "../services/util.service";
 import { Loading } from "./Loading";
+import LabelSelect from "./LabelSelect";
 
 export function ToyFilter({ filterBy, onSetFilter, labels }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy });
@@ -19,8 +20,6 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
         } else {
             value = type === 'number' ? +value : value
         }
-
-        console.log(value);
 
         if (value === 0) value = ''
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
@@ -60,8 +59,10 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                     <option value="In stock">In stock</option>
                     <option value="Out of stock">Out of stock</option>
                 </select>
-
-                {labels &&
+{/* 
+                {!!labels.length &&
+                //TODO How to work with params?
+                //TODO How to select multiple options without cmd?
                     <>
                         <label htmlFor="labels-select">Labels:</label>
                         <select
@@ -71,13 +72,16 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                             id="labels-select"
                             name="labels"
                         >
-                            <option disabled style={{color: "yellow", backgroundColor: "purple"}}>Labels:</option>
+                            <option disabled style={{ color: "yellow", backgroundColor: "purple" }}>Labels:</option>
                             {labels.map(label => {
                                 return <option key={label} value={label}>{label}</option>
                             })}
                         </select>
                     </>
-                }
+                } */}
+
+                <LabelSelect labels={labels} setFilterByToEdit={setFilterByToEdit} />
+
             </form>
         </section>
 
