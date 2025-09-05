@@ -46,7 +46,6 @@ export function ToyEdit() {
         saveToy(toyToEdit)
             .then(() => navigate('/toy'))
     }
-    console.log(toyToEdit);
 
     return (
 

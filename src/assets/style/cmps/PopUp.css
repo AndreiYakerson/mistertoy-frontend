@@ -7,7 +7,7 @@
     background-color: rgba(0, 0, 0, 0.31);
     display: flex;
     justify-content: center;
-    /* filter: blur(0.5px); */
+    /* filter: blur(1px); */
     /* TODO Blur container instead the backdrop */
     
     align-items: center;
@@ -17,7 +17,6 @@
 
 .popup-container {
     background-color: yellow;
-    /* TODO Set opacity when i set var */
     background-color: var(--clr1);
 
     border-radius: 8px;

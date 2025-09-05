@@ -59,10 +59,11 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                     <option value="In stock">In stock</option>
                     <option value="Out of stock">Out of stock</option>
                 </select>
-{/* 
-                {!!labels.length &&
+
+                {/* {!!labels.length &&
                 //TODO How to work with params?
                 //TODO How to select multiple options without cmd?
+
                     <>
                         <label htmlFor="labels-select">Labels:</label>
                         <select
