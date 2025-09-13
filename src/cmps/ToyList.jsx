@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { ToyPreview } from "./ToyPreview"
 
 export function ToyList({ toys, onRemoveToy }) {
-    // console.log(toys);
-
     return (
         <ul className="toy-list">
             {toys.map(toy => {

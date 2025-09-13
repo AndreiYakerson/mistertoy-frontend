@@ -1,5 +1,5 @@
 
-import { toyService } from '../../services/toy.service-local.js';
+import { toyService } from '../../services/toy.service.server.js';
 
 import { store } from '../store'
 
@@ -32,7 +32,7 @@ export async function removeToy(toyId) {
 
 export async function saveToy(toy) {
     const type = toy._id ? UPDATE_TOY : ADD_TOY
-
+    
     try {
         const toyToSave = await toyService.save(toy)
         store.dispatch({ type, toy: toyToSave })

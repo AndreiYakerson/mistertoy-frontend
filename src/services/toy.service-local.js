@@ -1,4 +1,5 @@
 
+import axios from 'axios'
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 
@@ -20,8 +21,7 @@ export const toyService = {
 
 
 
-function query(filterBy = {}) {
-
+async function query(filterBy = {}) {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
@@ -49,6 +49,45 @@ function query(filterBy = {}) {
             })
 
         })
+
+}
+
+
+
+function getById(toyId) {
+    return storageService.get(STORAGE_KEY, toyId)
+}
+
+function remove(toyId) {
+    // return Promise.reject('Not now!')
+    return storageService.remove(STORAGE_KEY, toyId)
+}
+
+
+function save(toy) {
+    if (toy._id) {
+        return storageService.put(STORAGE_KEY, toy)
+    } else {
+        // when switching to backend - remove the next line
+        // toy.owner = userService.getLoggedinUser()
+        toy.createdAt = Date.now()
+        toy.imgUrl = `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
+        toy.description = utilService.makeLorem(utilService.getRandomIntInclusive(10, 30))
+        toy.labels = utilService.getRandomLabels(3)
+        return storageService.post(STORAGE_KEY, toy)
+    }
+}
+
+function getEmptyToy() {
+    return {
+        name: '',
+        price: '',
+        inStock: false,
+    }
+}
+
+function getDefaultFilter() {
+    return { txt: '', maxPrice: '', sortBy: '', labels: [] }
 }
 
 function getChartData() {
@@ -120,58 +159,5 @@ function _mapBylabelsInStock(toys, labels) {
     return labelsCount;
 }
 
-
-function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
-}
-
-function remove(toyId) {
-    // return Promise.reject('Not now!')
-    return storageService.remove(STORAGE_KEY, toyId)
-}
-
-
-function save(toy) {
-    if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
-    } else {
-        // when switching to backend - remove the next line
-        // toy.owner = userService.getLoggedinUser()
-        toy.createdAt = Date.now()
-        toy.imgUrl = `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
-            toy.description = utilService.makeLorem(utilService.getRandomIntInclusive(10, 30))
-        toy.labels = utilService.getRandomLabels(3)
-        return storageService.post(STORAGE_KEY, toy)
-    }
-}
-
-function getEmptyToy() {
-    return {
-        name: '',
-        price: '',
-        inStock: false,
-    }
-}
-
-
-// function getRandomToy() {
-//     return {
-//         name: utilService.getRandomLabels(1),
-//         description: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
-//         imgUrl: `./img/toy${utilService.getRandomIntInclusive(1, 10)}.png`,
-//         price: utilService.getRandomIntInclusive(10, 100),
-//         labels: utilService.getRandomLabels(3),
-//         createdAt: Date.now(),
-//     }
-
-// }
-
-
-function getDefaultFilter() {
-    return { txt: '', maxPrice: '', sortBy: '', labels: [] }
-}
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
 
 

@@ -60,27 +60,6 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                     <option value="Out of stock">Out of stock</option>
                 </select>
 
-                {/* {!!labels.length &&
-                //TODO How to work with params?
-                //TODO How to select multiple options without cmd?
-
-                    <>
-                        <label htmlFor="labels-select">Labels:</label>
-                        <select
-                            multiple
-                            className="labels-select"
-                            onChange={handleChange}
-                            id="labels-select"
-                            name="labels"
-                        >
-                            <option disabled style={{ color: "yellow", backgroundColor: "purple" }}>Labels:</option>
-                            {labels.map(label => {
-                                return <option key={label} value={label}>{label}</option>
-                            })}
-                        </select>
-                    </>
-                } */}
-
                 <LabelSelect labels={labels} setFilterByToEdit={setFilterByToEdit} />
 
             </form>

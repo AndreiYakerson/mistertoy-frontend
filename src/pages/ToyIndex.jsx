@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ToyList } from "../cmps/ToyList.jsx";
-import { toyService } from "../services/toy.service-local.js";
+import { toyService } from "../services/toy.service.server.js";
 import { Loading } from "../cmps/Loading.jsx";
 import { ToyFilter } from "../cmps/ToyFilter.jsx";
 import { Link, useSearchParams } from "react-router-dom";
