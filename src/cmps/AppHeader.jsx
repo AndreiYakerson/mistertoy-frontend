@@ -1,8 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../store/actions/user.actions";
 
 
 export function AppHeader() {
-
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
+    const navigate = useNavigate()
 
     return (
         <header className="app-header full main-layout">
@@ -12,6 +16,19 @@ export function AppHeader() {
                 <NavLink to="/about" >About</NavLink>
                 <NavLink to="/toy" >Toys</NavLink>
                 <NavLink to="/dashboard" >Dashboard</NavLink>
+                {
+                    user ?
+                        <>
+                            <NavLink to="/profile" >{user.fullname}</NavLink>
+                            <button onClick={() => {
+                                logout()
+                                navigate('/')
+                            }}>Logout</button>
+                        </>
+                        :
+                        <NavLink to="/login" >Login</NavLink>
+                }
+
             </nav>
         </header>
     )

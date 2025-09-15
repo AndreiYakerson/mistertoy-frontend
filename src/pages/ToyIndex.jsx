@@ -9,6 +9,7 @@ import { loadToys, removeToy } from "../store/actions/toy.actions.js";
 
 export function ToyIndex() {
     const toys = useSelector(state => state.toyModule.toys);
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const [labels, setLabels] = useState([])
     
     const [searchParams, setSearchParams] = useSearchParams();
