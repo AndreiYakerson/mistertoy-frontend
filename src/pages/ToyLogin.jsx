@@ -3,10 +3,13 @@ import { userService } from "../services/user.service"
 import { useNavigate } from "react-router-dom"
 import { SET_USER } from "../store/reducers/user.reducer"
 import { login, logout, signup } from "../store/actions/user.actions"
+import { ImgUploader } from "../cmps/ImgUploader"
 
 export function ToyLogin() {
 
     const [loginState, setLoginState] = useState(true)
+    const [credentials, setCredentials] = useState({fullname: '', username: '', password: '', imgUrl: ''})
+
     const navigate = useNavigate()
 
     const form = useRef()
@@ -18,18 +21,27 @@ export function ToyLogin() {
         const username = form.current.username.value
         const password = form.current.password.value
 
-        const credentials = { fullname, username, password }
+        const userCredential = {...credentials, fullname, username, password}
+
 
         if (loginState) {
-            login(credentials).then((res) => {
+            login(userCredential).then((res) => {
                 if (res) navigate('/toy')
             })
         } else {
-            signup(credentials).then((res) => {
+            console.log(userCredential);
+
+            signup(userCredential).then((res) => {
                 if (res) navigate('/toy')
             })
         }
 
+    }
+
+    function onUploaded(imgUrl) {
+        setCredentials(prevCredentials => ({ ...prevCredentials, imgUrl }))
+        console.log(credentials);
+        
     }
 
 
@@ -41,6 +53,7 @@ export function ToyLogin() {
                     <>
                         <label htmlFor="fullname">Full name:</label>
                         <input type="text" id="fullname" name="fullname" required />
+
                     </>
                 }
                 <label htmlFor="username">Username:</label>
@@ -48,6 +61,7 @@ export function ToyLogin() {
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" required />
                 <button type="submit" onClick={onSubmit}>{loginState ? 'Login' : 'Signup'}</button>
+                {!loginState && <ImgUploader onUploaded={onUploaded} />}
             </form>
             <a href="#" onClick={() => setLoginState(prevState => !prevState)}>
                 {loginState ? 'Need to create an account? Signup' : 'Already have an account? Login'}
