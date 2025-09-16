@@ -29,8 +29,6 @@ export function ToyLogin() {
                 if (res) navigate('/toy')
             })
         } else {
-            console.log(userCredential);
-
             signup(userCredential).then((res) => {
                 if (res) navigate('/toy')
             })
@@ -40,8 +38,6 @@ export function ToyLogin() {
 
     function onUploaded(imgUrl) {
         setCredentials(prevCredentials => ({ ...prevCredentials, imgUrl }))
-        console.log(credentials);
-        
     }
 
 
