@@ -9,7 +9,7 @@ export const userService = {
   getEmptyCredentials,
 }
 
-const BASE_URL = 'http://localhost:3030'
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030'
 const STORAGE_KEY = 'loggedinUser'
 
 async function login({ username, password }) {

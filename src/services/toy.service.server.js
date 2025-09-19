@@ -3,7 +3,7 @@ import axios from 'axios'
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 
-const BASE_URL = 'http://localhost:3030'
+const BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030'
 
 export const toyService = {
     query,
