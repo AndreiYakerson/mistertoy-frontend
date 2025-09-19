@@ -25,7 +25,7 @@ export function AppHeader() {
                     user ?
                         <>
                             <NavLink to="/profile" >{user.fullname}</NavLink>
-                            <Link to="/profile"><img src={user.imgUrl} alt="" style={{width: '50px', height: '50px' , borderRadius: '50%', objectFit: 'cover'}} /></Link>
+                            <Link to="/profile"><img src={user.imgUrl} alt="" className="small-img" /></Link>
                             <button onClick={onLogout}>Logout</button>
                         </>
                         :

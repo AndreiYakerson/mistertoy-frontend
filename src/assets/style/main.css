@@ -7,6 +7,7 @@
 @import 'base/helpers.css';
 @import 'base/layout.css';
 @import 'base/forms.css';
+@import 'base/profile-img.css';
 
 /* Components */
 @import 'cmps/AppHeader.css';
@@ -28,6 +29,7 @@
 @import 'pages/ToyDetails.css';
 @import 'pages/EditPage.css';
 @import 'pages/ToyDeshboard.css';
+@import 'pages/UserProfile.css';
 
 
 .app {

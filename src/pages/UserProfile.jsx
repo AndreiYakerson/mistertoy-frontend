@@ -1,6 +1,14 @@
+import { useSelector } from "react-redux"
 
 export function UserProfile() {
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
     return (
-        <h2>UserProfile</h2>
+        <div className="user-page">
+
+        <div className="user-container">
+            <img src={user.imgUrl} className="big-img" />
+            <h2>{user.fullname}</h2>
+        </div>
+        </div>
     )
 }

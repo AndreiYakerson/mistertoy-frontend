@@ -1,0 +1,12 @@
+
+.user-page {
+    display: grid;
+    place-content: center center;
+    padding: 20px;
+}
+
+.user-container {
+    padding: 10px;
+    display: grid;
+    justify-items: center;
+}
