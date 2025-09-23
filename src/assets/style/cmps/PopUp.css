@@ -51,7 +51,7 @@
 
 .pop-up-btn {
     position: absolute;
-    inset: auto 50px 100px auto;
+    inset: auto 50px 7px auto;
     border-radius: 0 2em 0 2em;
     padding: 2rem;
     font-size: 20px;

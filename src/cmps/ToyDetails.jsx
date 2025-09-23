@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { toyService } from "../services/toy.service.server.js";
-import { ToyPreview } from "./ToyPreview.jsx";
 import { PopUp } from "./PopUp.jsx";
 import { Chat } from "./Chat.jsx";
+import { ToyReview } from "./ToyReview.jsx";
+import { reviewService } from "../services/review.service.js";
 
 
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const [reviews, setReviews] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const { toyId } = useParams()
     const navigate = useNavigate()
 
+
     useEffect(() => {
         loadToy()
+        loadReviews()
     }, [toyId])
 
 
@@ -27,6 +31,12 @@ export function ToyDetails() {
                 navigate('/toy')
             })
     }
+
+    function loadReviews() {
+        reviewService.query({ aboutToyId: toyId })
+            .then(setReviews)
+    }
+
 
     if (!toy) return <div className="loading"></div>
 
@@ -55,6 +65,8 @@ export function ToyDetails() {
                         <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
                     </button>
                 </div>
+
+
                 {!isOpen && <button className="btn pop-up-btn" onClick={() => setIsOpen(true)}>Chat</button>}
                 <PopUp
                     header={'Chat'}
@@ -66,7 +78,12 @@ export function ToyDetails() {
                 </PopUp>
             </div>
 
-            <img src={`../${toy.imgUrl}`} alt="" />
+            <ToyReview
+                toy={toy}
+                reviews={reviews}
+                setReviews={setReviews}
+            />
+            <img className="detail-img" src={`../${toy.imgUrl}`} alt="" />
         </section>
     )
 }

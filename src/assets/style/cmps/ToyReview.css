@@ -1,0 +1,54 @@
+.reviews {
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 200px;
+    border: solid 1px var(--clr1bg);
+    border-radius: 1em;
+}
+
+.clean-list {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 10px;
+    width: inherit;
+}
+
+.clean-list li {
+    display: grid;
+    row-gap: 10px;
+    background-color: var(--clr1);
+    border-radius: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+    box-shadow: var(--box-shadow);
+}
+
+.clean-list li p {
+    color: var(--clr1bg);
+}
+
+.msg-credentials {
+    display: flex;
+    gap: 10px;
+}
+
+
+.reviews-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    row-gap: 10px;
+}
+
+.review-form {
+    display: grid;
+    place-self: end stretch;
+}
+
+.review-form textarea {
+    resize: none;
+    height: 4em;
+    border-radius: 10px;
+    border: solid 1px var(--clr1bg);
+    padding: 5px;
+}
