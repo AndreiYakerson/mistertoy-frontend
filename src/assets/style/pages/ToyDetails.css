@@ -4,8 +4,8 @@
     margin-block: 10px;
     grid-template-columns: .5fr 1fr;
 
-    /* grid-template-rows: .5fr 1fr; */
 }
+
 
 
 .toy-info {
@@ -18,7 +18,7 @@
     border-radius: .5em;
     box-shadow: var(--box-shadow);
     height: 100%;
-    
+
 }
 
 .details-btns {
@@ -56,3 +56,27 @@
     margin-block: 15px;
 }
 
+@media (max-width: 660px) {
+    .toy-details {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-img {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .toy-info {
+        place-self: start;
+        grid-column: 1;
+        grid-row: 2 / span 2;
+    
+        background-color: var(--clr1);
+        padding: 1em;
+        border-radius: .5em;
+        box-shadow: var(--box-shadow);
+        height: 100%;
+    
+    }
+
+}
