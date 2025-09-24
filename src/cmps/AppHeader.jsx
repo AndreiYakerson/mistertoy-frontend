@@ -2,11 +2,16 @@ import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../store/actions/user.actions";
+import { useState } from "react";
+
 
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const navigate = useNavigate()
+    const [navOpen, setNavOpen] = useState(false);
+
+
 
     function onLogout() {
         logout()
@@ -16,7 +21,7 @@ export function AppHeader() {
     return (
         <header className="app-header full main-layout">
             <h1>Mister Toy</h1>
-            <nav className="app-nav">
+            <nav className={`app-nav ${navOpen ? ' open' : ''}`}>
                 <NavLink to="/" >Home</NavLink>
                 <NavLink to="/about" >About</NavLink>
                 <NavLink to="/toy" >Toys</NavLink>
@@ -32,6 +37,12 @@ export function AppHeader() {
                         <NavLink to="/login" >Login</NavLink>
                 }
 
+                <button
+                    onClick={() => setNavOpen(preview => !preview)}
+                    className="btn btn-burger"
+                >
+                    {navOpen ? '✖' : '☰'}
+                </button>
             </nav>
         </header>
     )

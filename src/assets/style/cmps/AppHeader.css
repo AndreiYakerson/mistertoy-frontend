@@ -13,3 +13,46 @@
     align-items: center;
     gap: 15px;
 }
+
+.btn-burger {
+    position: absolute;
+    top: 30px;
+    left: -60px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 720px) {
+    .app-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+}
+
+@media screen and (max-width: 535px) {
+    .app-nav {
+        position: fixed;
+        inset: 0 0 0 auto;
+
+        display: grid;
+        place-content: start center;
+        gap: 50px;
+        padding: 50px 10px;
+
+        z-index: 1;
+
+        transition:  0.3s ease-in-out;
+        translate: 100%;
+
+        background-color: var(--clr1);
+        box-shadow: var(--box-shadow);
+    }
+
+    .open {
+        translate: 0;
+    }
+
+}

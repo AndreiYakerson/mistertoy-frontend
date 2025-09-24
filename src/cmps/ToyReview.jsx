@@ -33,21 +33,22 @@ export function ToyReview({ reviews, toy, setReviews }) {
     return (
         <div className="reviews-container">
 
-            <section className="reviews">
-                <ul className="clean-list">
-                    {reviews &&
-                        reviews.map((review, idx) => (
-                            <li key={idx} ref={idx === reviews.length - 1 ? lastReviewRef : null}>
-                                <div className="msg-credentials">
-                                    <img src={review.byUser.imgUrl} className="small-img" alt="" />
-                                    <p>{review.byUser.fullname}</p>
-                                </div>
+            { !!reviews.length &&
+                <section className="reviews">
+                    <ul className="clean-list">
+                        {reviews &&
+                            reviews.map((review, idx) => (
+                                <li key={idx} ref={idx === reviews.length - 1 ? lastReviewRef : null}>
+                                    <div className="msg-credentials">
+                                        <img src={review.byUser.imgUrl} className="small-img" alt="" />
+                                        <p>{review.byUser.fullname}</p>
+                                    </div>
                                     {review.txt}
-                            </li>
-                        ))}
-                </ul>
-            </section>
-
+                                </li>
+                            ))}
+                    </ul>
+                </section>
+            }
             <form onSubmit={onSaveReview} className="review-form">
                 <textarea name="review-input" id="review-input" placeholder="Review..."></textarea>
                 <button type="submit" className="btn">Send</button>

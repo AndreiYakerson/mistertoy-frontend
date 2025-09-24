@@ -1,15 +1,17 @@
 
-.toy-list {
+
+ul.toy-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    padding-inline-start: 0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
     list-style: none;
 }
 
 .toy-list li {
     display: grid;
-    min-height: 300px;
-    max-width: 500px;
+    /* min-height: 300px; */
+    /* max-width: 500px; */
     background-color: var(--clr1);
     padding: .6em;
     

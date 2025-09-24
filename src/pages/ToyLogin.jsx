@@ -8,7 +8,7 @@ import { ImgUploader } from "../cmps/ImgUploader"
 export function ToyLogin() {
 
     const [loginState, setLoginState] = useState(true)
-    const [credentials, setCredentials] = useState({fullname: '', username: '', password: '', imgUrl: ''})
+    const [credentials, setCredentials] = useState({ fullname: '', username: '', password: '', imgUrl: '' })
 
     const navigate = useNavigate()
 
@@ -21,7 +21,7 @@ export function ToyLogin() {
         const username = form.current.username.value
         const password = form.current.password.value
 
-        const userCredential = {...credentials, fullname, username, password}
+        const userCredential = { ...credentials, fullname, username, password }
 
 
         if (loginState) {
@@ -44,7 +44,12 @@ export function ToyLogin() {
     return (
         <div className="login-form">
             <h1>Login</h1>
-            <form ref={form}>
+            <form className="login-container" ref={form}>
+                <div className="login-toggle-container">
+                    <button onClick={() => setLoginState(true)} className={`btn ${loginState && 'active'}`}>Login</button>
+                    <button onClick={() => setLoginState(false)} className={`btn ${!loginState && 'active'}`}>Signup</button>
+                </div>
+
                 {!loginState &&
                     <>
                         <label htmlFor="fullname">Full name:</label>
@@ -56,12 +61,10 @@ export function ToyLogin() {
                 <input type="text" id="username" name="username" required />
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" required />
-                <button type="submit" onClick={onSubmit}>{loginState ? 'Login' : 'Signup'}</button>
                 {!loginState && <ImgUploader onUploaded={onUploaded} />}
+                <button type="submit" onClick={onSubmit}>{loginState ? 'Login' : 'Signup'}</button>
+
             </form>
-            <a href="#" onClick={() => setLoginState(prevState => !prevState)}>
-                {loginState ? 'Need to create an account? Signup' : 'Already have an account? Login'}
-            </a>
         </div>
     )
 }

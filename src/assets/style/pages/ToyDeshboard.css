@@ -2,5 +2,6 @@
 .toy-dashboard {
     margin-inline: auto;
     margin-block: 50px;
-    width: 50%;
+    min-width: 300px;
+    max-width: 500px;
 }

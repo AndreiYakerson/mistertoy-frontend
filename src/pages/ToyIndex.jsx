@@ -44,7 +44,7 @@ export function ToyIndex() {
                 />
             </header>
 
-            <section>
+            <section className="toy-list-section">
                 <button><Link to={'/toy/edit'}>Add toy</Link></button>
                 <h1>Toy list:</h1>
                 {toys.length === 0 && <h2>No toys available.</h2>}
