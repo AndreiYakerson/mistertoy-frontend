@@ -20,6 +20,10 @@ export function ToyReview({ reviews, toy, setReviews }) {
 
         const txt = ev.target.elements[0].value
         if (!txt) return
+        if (!user) {
+            ev.target.reset()
+            return alert('You must be logged in to add a review')
+        }
 
         reviewService.add({ txt, aboutToyId: toy._id, loggedinUser: user })
         setReviews(prevReviews => [...prevReviews, { txt, byUser: user }])
