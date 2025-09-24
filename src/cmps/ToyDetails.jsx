@@ -67,23 +67,23 @@ export function ToyDetails() {
                 </div>
 
 
-                {!isOpen && <button className="btn pop-up-btn" onClick={() => setIsOpen(true)}>Chat</button>}
-                <PopUp
-                    header={'Chat'}
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                >
-                    <Chat />
-
-                </PopUp>
+            {!isOpen && <button className="btn pop-up-btn" onClick={() => setIsOpen(true)}>Chat</button>}
             </div>
 
             <ToyReview
                 toy={toy}
                 reviews={reviews}
                 setReviews={setReviews}
-            />
+                />
             <img className="detail-img" src={`../${toy.imgUrl}`} alt="" />
+                <PopUp
+                    header={'Chat'}
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    >
+                    <Chat />
+
+                </PopUp>
         </section>
     )
 }

@@ -5,8 +5,6 @@ import { useEffect, useRef } from "react";
 
 export function ToyReview({ reviews, toy, setReviews }) {
 
-    console.log(reviews);
-
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const lastReviewRef = useRef(null);
 
