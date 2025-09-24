@@ -1,7 +1,8 @@
 .reviews {
     overflow-y: auto;
+    scrollbar-width: none;
     padding: 10px;
-    max-height: 200px;
+    max-height: 250px;
     border: solid 1px var(--clr1bg);
     border-radius: 1em;
 }
@@ -15,12 +16,13 @@
 }
 
 .clean-list li {
-    display: grid;
-    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     background-color: var(--clr1);
     border-radius: 10px;
     padding: 10px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     box-shadow: var(--box-shadow);
 }
 
